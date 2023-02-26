@@ -12,13 +12,27 @@ const path = require('path');
 const express = require('express');
 
 //import products controller
-const productsController = require('../controllers/products');
+const shopController = require('../controllers/shop');
 
 //create router object
 const router = express.Router();
 
-//call get method to add middleware function
-router.get('/', productsController.getProducts);
+router.get('/', shopController.getIndex);
+
+router.get('/products', shopController.getProducts);
+
+router.get('/products/:productId', shopController.getProduct);
+
+router.get('/cart', shopController.getCart);
+
+router.post('/cart', shopController.postCart);
+
+router.post('/cart-delete-item', shopController.postCartDeleteProduct);
+
+router.get('/orders', shopController.getOrders);
+
+router.get('/checkout', shopController.getCheckout);
+
 
 //export the router
 module.exports = router; 

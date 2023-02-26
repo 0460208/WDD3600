@@ -12,7 +12,7 @@ const path = require('path');
 const express = require('express');
 
 //import controller 
-const productsController = require('../controllers/products');
+const adminController = require('../controllers/admin');
 
 //import rootDir from path util path directory
 //const rootDir = require('../util/path');
@@ -20,12 +20,22 @@ const productsController = require('../controllers/products');
 //create router object 
 const router = express.Router();
 
+// /admin/add-product => GET
+router.get('/add-product', adminController.getAddProduct);
 
-//call GET function for /add-product 
-router.get('/add-product', productsController.getAddProduct);
+// /admin/products => GET
+router.get('/products', adminController.getProducts);
 
-//call POST function to ask for /add-product
-router.post('/add-product', productsController.postAddProduct);
+// /admin/add-product => POST
+router.post('/add-product', adminController.postAddProduct);
+
+// /admin/edit-products => GET
+router.get('/edit-product/:productId', adminController.getEditProduct);
+
+router.post('/edit-product', adminController.postEditProduct);
+
+// post delete product
+router.post('/delete-product', adminController.postDeleteProduct);
 
 //export router
 module.exports = router; 
