@@ -17,6 +17,9 @@ const bodyParser = require('body-parser');
 //import error controller
 const errorController = require('./controllers/error');
 
+// create db constant 
+const db = require('./util/database');
+
 //create app constant 
 const app = express();
 
@@ -27,6 +30,9 @@ app.set('views', 'views');
 //import routes  
 const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
+const { resourceLimits } = require('worker_threads');
+
+
 
 //parser
 app.use(bodyParser.urlencoded({extended: false}));
