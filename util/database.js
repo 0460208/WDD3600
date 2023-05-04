@@ -5,16 +5,14 @@
  * Date: 2/2/2023
 */
 
-//import mysql
-const mysql = require('mysql2');
+//use Sequielize
+const Sequelize = require('sequelize');
 
-//create connection pool 
-const pool = mysql.createPool({
-    host: 'localhost',
-    user: 'root',
-    database: 'node-complete',
-    password: 'Dally500$'
+//create new Sequelize instance
+const sequelize = new Sequelize('node-complete', 'root', 'nodecomplete', 
+{
+  dialect: 'mysql',
+  host: 'localhost'
 });
 
-//export pool
-module.exports = pool.promise();
+module.exports = sequelize;
