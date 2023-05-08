@@ -1,6 +1,15 @@
+/*
+ * Author: Amanda Martel
+ * Filname: shop.js
+ * Class: WDD 3600 - Node Complete Guide
+ * Date: 2/2/2023
+*/
+
+// import models
 const Product = require('../models/product');
 const Order = require('../models/order');
 
+//export getProducts
 exports.getProducts = (req, res, next) => {
   Product.find()
     .then(products => {
@@ -17,6 +26,7 @@ exports.getProducts = (req, res, next) => {
     });
 };
 
+//export getProduct
 exports.getProduct = (req, res, next) => {
   const prodId = req.params.productId;
   Product.findById(prodId)
@@ -31,6 +41,7 @@ exports.getProduct = (req, res, next) => {
     .catch(err => console.log(err));
 };
 
+//export getIndex
 exports.getIndex = (req, res, next) => {
   Product.find()
     .then(products => {
@@ -46,6 +57,7 @@ exports.getIndex = (req, res, next) => {
     });
 };
 
+// export getCart
 exports.getCart = (req, res, next) => {
   req.user
     .populate('cart.items.productId')
@@ -62,6 +74,7 @@ exports.getCart = (req, res, next) => {
     .catch(err => console.log(err));
 };
 
+// export postCart
 exports.postCart = (req, res, next) => {
   const prodId = req.body.productId;
   Product.findById(prodId)
@@ -74,6 +87,7 @@ exports.postCart = (req, res, next) => {
     });
 };
 
+// export postCartDeleteProduct
 exports.postCartDeleteProduct = (req, res, next) => {
   const prodId = req.body.productId;
   req.user
@@ -84,6 +98,7 @@ exports.postCartDeleteProduct = (req, res, next) => {
     .catch(err => console.log(err));
 };
 
+// export postOrder
 exports.postOrder = (req, res, next) => {
   req.user
     .populate('cart.items.productId')
@@ -110,6 +125,7 @@ exports.postOrder = (req, res, next) => {
     .catch(err => console.log(err));
 };
 
+// export getOrders
 exports.getOrders = (req, res, next) => {
   Order.find({ 'user.userId': req.user._id })
     .then(orders => {

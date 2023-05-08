@@ -1,7 +1,18 @@
+/*
+ * Author: Amanda Martel
+ * Filname: order.js
+ * Class: WDD 3600 - Node Complete Guide
+ * Date: 2/2/2023
+*/
+
+
+//import mongoose
 const mongoose = require('mongoose');
 
+// create schema 
 const Schema = mongoose.Schema;
 
+// create orderSchema
 const orderSchema = new Schema({
   products: [
     {
@@ -22,4 +33,5 @@ const orderSchema = new Schema({
   }
 });
 
+// export the module 
 module.exports = mongoose.model('Order', orderSchema);

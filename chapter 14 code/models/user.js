@@ -1,7 +1,17 @@
+/*
+ * Author: Amanda Martel
+ * Filname: user.js
+ * Class: WDD 3600 - Node Complete Guide
+ * Date: 2/2/2023
+*/
+
+//install mongoose 
 const mongoose = require('mongoose');
 
+// create Schema
 const Schema = mongoose.Schema;
 
+// create user Schema
 const userSchema = new Schema({
   name: {
     type: String,
@@ -25,6 +35,7 @@ const userSchema = new Schema({
   }
 });
 
+// use userSchema to add item to the cart
 userSchema.methods.addToCart = function(product) {
   const cartProductIndex = this.cart.items.findIndex(cp => {
     return cp.productId.toString() === product._id.toString();
@@ -48,6 +59,7 @@ userSchema.methods.addToCart = function(product) {
   return this.save();
 };
 
+// use userSchema to remove item from the cart
 userSchema.methods.removeFromCart = function(productId) {
   const updatedCartItems = this.cart.items.filter(item => {
     return item.productId.toString() !== productId.toString();
@@ -56,11 +68,13 @@ userSchema.methods.removeFromCart = function(productId) {
   return this.save();
 };
 
+// use userSchema to clear the cart
 userSchema.methods.clearCart = function() {
   this.cart = { items: [] };
   return this.save();
 };
 
+// export the module 
 module.exports = mongoose.model('User', userSchema);
 
 // const mongodb = require('mongodb');
