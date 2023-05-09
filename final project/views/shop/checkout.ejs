@@ -1,0 +1,32 @@
+<!-- 
+/*
+ * Author: Amanda Martel
+ * Filname: checkout.ejs
+ * Class: WDD 3600 - Node Complete Guide
+ * Date: 2/2/2023
+*/
+-->
+
+<!-- link the stylesheets-->
+<%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/cart.css">
+    
+    </head>
+
+    <!-- body -->
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+        <main>
+            <ul class="cart__item-list">
+                <% products.forEach(p => { %>
+                    <li class="cart__item">
+                        <h1><%= p.productId.title %></h1>
+                        <h2>Quantity: <%= p.quantity %></h2>
+                    </li>
+                <% }) %>
+            </ul>
+            <div class="centered">
+                <h2>Total: <%= totalSum %></h2>
+            </div>
+        </main>
+        <%- include('../includes/end.ejs') %>
